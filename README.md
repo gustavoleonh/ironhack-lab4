@@ -22,7 +22,7 @@ FUNCTION authenticateUser(username, password):
 * **Recommendation:** Validate and sanitize all inputs to ensure they conform to expected formats and types.
 
 <br>
-
+<br>
 **3.** **Plaintext Password Handling:**
 
 * **Issue:** The `password` is being used directly in the query, suggesting that it might be stored in the database in plaintext or compared directly without any hashing.
@@ -30,7 +30,7 @@ FUNCTION authenticateUser(username, password):
 * **Recommendation:** Always hash passwords using a strong, secure hashing algorithm (e.g., bcrypt, Argon2) before storing or comparing them.
 
 <br>
-
+<br>
 **4.  Error Handling and Reporting:**
 
 * **Issue:** The function returns a simple boolean without providing any error handling or logging.
@@ -41,7 +41,6 @@ FUNCTION authenticateUser(username, password):
 Possible secure version:
 
 <br>
-
 ```
 FUNCTION authenticateUser(username, password):
   SANITIZE username
@@ -52,16 +51,44 @@ FUNCTION authenticateUser(username, password):
 ```
 <br>
 <br>
-
 1. JWT Authentication design document.
 
-   ![JWT](https://github.com/gustavoleonh/ironhack-lab4/assets/116121540/df6d0ec3-09d5-4bd7-be7d-e4a4a4595617)
-
-
 <br>
-<br>
+```
+DEFINE FUNCTION generateJWT(userCredentials):
+  IF validateCredentials(userCredentials):
+    SET tokenExpiration = currentTime + 3600 // Token expires in one hour
+    RETURN encrypt(userCredentials + tokenExpiration, secretKey)
+  ELSE:
+    RETURN error
+```
 <br>
 <br>
 1. Data protection startegy document.
 
-s
+Original:
+
+<br>
+```
+PLAN secureDataCommunication:
+  IMPLEMENT SSL/TLS for all data in transit
+  USE encrypted storage solutions for data at rest
+  ENSURE all data exchanges comply with HTTPS protocols
+
+```
+<br>
+Propossed policy:
+<br>
+```
+PLAN secureDataCommunication:
+  IMPLEMENT SSL/TLS for all data in transit
+  USE encrypted storage solutions for data at rest
+  ENSURE all data exchanges comply with HTTPS protocols
+  ENFORCE strict access controls and authentication mechanisms
+  CONDUCT regular security audits and vulnerability assessments
+  ENABLE logging and monitoring of all data access and transactions
+  ADOPT a least privilege principle for data access
+  USE strong encryption algorithms and regularly update encryption keys
+  PROVIDE user data anonymization and pseudonymization where applicable
+  ESTABLISH data breach response and notification procedures
+```
