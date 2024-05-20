@@ -22,6 +22,7 @@ FUNCTION authenticateUser(username, password):
 * **Recommendation:** Validate and sanitize all inputs to ensure they conform to expected formats and types.
 
 <br>
+
 **3.** **Plaintext Password Handling:**
 
 * **Issue:** The `password` is being used directly in the query, suggesting that it might be stored in the database in plaintext or compared directly without any hashing.
@@ -29,6 +30,7 @@ FUNCTION authenticateUser(username, password):
 * **Recommendation:** Always hash passwords using a strong, secure hashing algorithm (e.g., bcrypt, Argon2) before storing or comparing them.
 
 <br>
+
 **4.  Error Handling and Reporting:**
 
 * **Issue:** The function returns a simple boolean without providing any error handling or logging.
@@ -39,6 +41,7 @@ FUNCTION authenticateUser(username, password):
 Possible secure version:
 
 <br>
+
 ```
 FUNCTION authenticateUser(username, password):
   SANITIZE username
@@ -49,7 +52,11 @@ FUNCTION authenticateUser(username, password):
 ```
 <br>
 <br>
+
 1. JWT Authentication design document.
+
+   ![JWT](https://github.com/gustavoleonh/ironhack-lab4/assets/116121540/df6d0ec3-09d5-4bd7-be7d-e4a4a4595617)
+
 
 <br>
 <br>
