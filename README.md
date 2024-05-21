@@ -9,8 +9,7 @@ FUNCTION authenticateUser(username, password):
   ELSE RETURN False
 ```
 
-<span class="colour" style="color:rgb(13, 13, 13)">**SQL Injection:**</span>
-**1\. SQL Injection:**
+**1) SQL Injection**
 
 * **Issue:** The code directly embeds the `username` and `password` into the database query, which suggests that it might be vulnerable to SQL Injection attacks if these values are not properly sanitized.
 * **Risk:** An attacker could craft a malicious input to manipulate the query, potentially gaining unauthorized access to the database or extracting sensitive information.
@@ -21,16 +20,12 @@ FUNCTION authenticateUser(username, password):
 * **Risk:** This can lead to various issues such as SQL Injection (as mentioned above) or other injection-based attacks, depending on the context.
 * **Recommendation:** Validate and sanitize all inputs to ensure they conform to expected formats and types.
 
-<br>
-<br>
 **3.** **Plaintext Password Handling:**
 
 * **Issue:** The `password` is being used directly in the query, suggesting that it might be stored in the database in plaintext or compared directly without any hashing.
 * **Risk:** Storing or comparing passwords in plaintext can lead to significant security risks if the database is compromised.
 * **Recommendation:** Always hash passwords using a strong, secure hashing algorithm (e.g., bcrypt, Argon2) before storing or comparing them.
 
-<br>
-<br>
 **4.  Error Handling and Reporting:**
 
 * **Issue:** The function returns a simple boolean without providing any error handling or logging.
@@ -38,9 +33,11 @@ FUNCTION authenticateUser(username, password):
 * **Recommendation:** Implement proper error handling and logging mechanisms to monitor for suspicious activities and respond appropriately.
 
 <br>
+
 Possible secure version:
 
 <br>
+
 ```
 FUNCTION authenticateUser(username, password):
   SANITIZE username
@@ -51,9 +48,11 @@ FUNCTION authenticateUser(username, password):
 ```
 <br>
 <br>
-1. JWT Authentication design document.
+
+### **2. JWT Authentication design document.**
 
 <br>
+
 ```
 DEFINE FUNCTION generateJWT(userCredentials):
   IF validateCredentials(userCredentials):
@@ -62,13 +61,18 @@ DEFINE FUNCTION generateJWT(userCredentials):
   ELSE:
     RETURN error
 ```
+
+Schematic desing:
+
+![JWT](https://github.com/gustavoleonh/ironhack-lab4/assets/116121540/ce29bbb1-a531-41bb-9b8c-632a033b1dfe)
+
 <br>
-<br>
-1. Data protection startegy document.
+
+### **3. Data protection startegy document.**
 
 Original:
-
 <br>
+
 ```
 PLAN secureDataCommunication:
   IMPLEMENT SSL/TLS for all data in transit
@@ -79,6 +83,7 @@ PLAN secureDataCommunication:
 <br>
 Propossed policy:
 <br>
+
 ```
 PLAN secureDataCommunication:
   IMPLEMENT SSL/TLS for all data in transit
